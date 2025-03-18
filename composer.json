@@ -1,0 +1,17 @@
+{
+    "name": "craftsnippets/craft-shipping-toolbox-base-plugin",
+    "type": "liblary",
+    "version": "1.0.0",
+    "autoload": {
+        "psr-4": {
+            "craftsnippets\\baseshippingplugin\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Piotr Pogorzelski",
+            "email": "piotrpog@protonmail.com"
+        }
+    ],
+    "require": {}
+}
