@@ -252,4 +252,9 @@ abstract class ShippingPlugin extends Plugin implements ShippingPluginInterface
         return null;
     }
 
+    public static function getShipmentInfContentsClass()
+    {
+        return null;
+    }
+
 }
