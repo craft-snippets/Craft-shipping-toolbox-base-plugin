@@ -114,12 +114,12 @@ abstract class BaseShippingDetails extends Model implements ShipmentDetailsInter
     // parcel shop
     public function getParcelShopCodeBeforeCreation()
     {
-        return ShippingToolbox::getInstance()->plugins->getParcelShopCodeForOrder($this->order);
+        return ShippingToolbox::getInstance()->plugins->getParcelShopCodeForOrder($this->order, $this->plugin->handle);
     }
 
     public function hasRequiredParcelShopParams()
     {
-        return false;
+        return true;
     }
 
     // cod
@@ -169,6 +169,16 @@ abstract class BaseShippingDetails extends Model implements ShipmentDetailsInter
     public function infoBeforeCreation(): array
     {
         return [];
+    }
+
+    public function isParcelShopDisabled()
+    {
+        return false;
+    }
+
+    public function isParcelShopForced()
+    {
+        return false;
     }
 
 }

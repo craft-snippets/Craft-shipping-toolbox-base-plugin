@@ -172,6 +172,11 @@ abstract class ShippingPlugin extends Plugin implements ShippingPluginInterface
         return false;
     }
 
+    public function useInputWeight()
+    {
+        return false;
+    }
+
     ////////////
     ///
     public function getSettingsErrors()
@@ -258,6 +263,11 @@ abstract class ShippingPlugin extends Plugin implements ShippingPluginInterface
     }
 
     public static function getShipmentInfContentsClass()
+    {
+        return null;
+    }
+
+    public function getWeightInputInstructions(): ?string
     {
         return null;
     }
