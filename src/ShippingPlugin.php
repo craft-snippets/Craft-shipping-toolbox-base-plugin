@@ -237,6 +237,11 @@ abstract class ShippingPlugin extends Plugin implements ShippingPluginInterface
         return false;
     }
 
+    public function supportsCod()
+    {
+        return false;
+    }
+
     public function getParcelShopsParametersErrors()
     {
         return null;

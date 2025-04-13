@@ -7,6 +7,7 @@ use craft\base\Model;
 use craft\commerce\elements\Order;
 use craft\elements\Asset;
 use craftsnippets\baseshippingplugin\ShipmentDetailsInterface;
+use craftsnippets\shippingtoolbox\ShippingToolbox;
 
 
 abstract class BaseShippingDetails extends Model implements ShipmentDetailsInterface
@@ -24,11 +25,6 @@ abstract class BaseShippingDetails extends Model implements ShipmentDetailsInter
     public function getHasParcels()
     {
         return !empty($this->parcels);
-    }
-
-    public function canUseCod()
-    {
-        return false;
     }
 
     public function createParcelsActionAllowed()
@@ -115,5 +111,64 @@ abstract class BaseShippingDetails extends Model implements ShipmentDetailsInter
 
     // inputs
 
+    // parcel shop
+    public function getParcelShopCodeBeforeCreation()
+    {
+        return ShippingToolbox::getInstance()->plugins->getParcelShopCodeForOrder($this->order);
+    }
+
+    public function hasRequiredParcelShopParams()
+    {
+        return false;
+    }
+
+    // cod
+    public function getDefaultCodAmount()
+    {
+        return $this->order->getTotalPrice();
+    }
+
+    public function codIsEnabledBeforeCreation()
+    {
+        return false;
+    }
+
+    public function getCodCurrencyBeforeCreation()
+    {
+        return null;
+    }
+
+    public function getCodAmountNumber()
+    {
+        return null;
+    }
+
+    public function getCodAmountCurrency()
+    {
+        return null;
+    }
+
+    public function codAmountIsDifferentFromTotalPrice(): bool
+    {
+        if(is_null($this->getCodAmountNumber())){
+            return false;
+        }
+        return $this->getCodAmountNumber() != $this->order->getTotalPrice();
+    }
+
+    public function isCodForced(): bool
+    {
+        return false;
+    }
+
+    public function isCodDisabled(): bool
+    {
+        return false;
+    }
+
+    public function infoBeforeCreation(): array
+    {
+        return [];
+    }
 
 }
