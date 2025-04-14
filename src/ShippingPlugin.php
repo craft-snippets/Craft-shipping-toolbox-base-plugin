@@ -12,6 +12,7 @@ use craftsnippets\baseshippingplugin\ShippingPluginInterface;
 use craftsnippets\shippingtoolbox\ShippingToolbox;
 use craft\base\Model;
 use craftsnippets\shippingtoolbox\elements\Shipment;
+use craft\commerce\Plugin as CommercePlugin;
 
 abstract class ShippingPlugin extends Plugin implements ShippingPluginInterface
 {
@@ -270,6 +271,11 @@ abstract class ShippingPlugin extends Plugin implements ShippingPluginInterface
     public function getWeightInputInstructions(): ?string
     {
         return null;
+    }
+
+    public function isParcelShopAllowedForShippingMethod($methodHandle)
+    {
+        return false;
     }
 
 }
